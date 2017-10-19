@@ -1,0 +1,7 @@
+# Development Satellite variables (satellite-register role)
+
+# Encore Service Account variables (svc_account role)
+
+# File name of pre and post patching scripts.
+
+#env_verify: /opt/encore/home/svc_encore/env_verify.sh
