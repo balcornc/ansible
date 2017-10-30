@@ -1,0 +1,66 @@
+/etc/ansible
+    |
+    |- inventory
+    |   |
+    |   |- group_vars
+    |   |    |
+    |   |    |- all
+    |   |    |   |
+    |   |    |   |- config
+    |   |    |
+    |   |    |- <host_group> (optional)
+    |   |    |   |
+    |   |    |   |- config
+    |   |
+    |   |- hosts
+    |   |
+    |   |- host_vars
+    |        |
+    |        |- <hostname> (optional)
+    |        |   |
+    |        |   |- config
+    |
+    |- playbooks
+    |   |
+    |   |- update_config.yaml
+    |   |- update.yaml
+    |
+    |
+    |- roles
+        |
+        |- update_config
+        |    |
+        |    |- files
+        |    |    |
+        |    |    |- host
+        |    |    |    |- <hostname> (optional)
+        |    |    |            |- env_verify.sh
+        |    |    |            |- pre_update.sh
+        |    |    |
+        |    |    |- group
+        |    |    |    |- <host_group> (optional)
+        |    |    |            |- env_verify.sh
+        |    |    |            |- pre_update.sh
+        |    |    |
+        |    |    |- post_update.sh
+        |    |    |- post_update_conf.env
+        |    |
+        |    |- tasks
+        |         |- main.yaml
+        |
+        |- pre_update
+        |    |
+        |    |- tasks
+        |        |- main.yaml
+        |
+        |
+        |- post_update
+        |    |
+        |    |- tasks
+        |         |- main.yaml
+        |
+        |- yum_update
+             |
+             |- tasks
+                  |- main.yaml
+
