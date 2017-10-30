@@ -1,0 +1,16 @@
+---
+
+- name: Updating all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Comparing last kernel and running kernel
+  shell: |
+    LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1)
+    CURRENT_KERNEL=$(uname -r)
+
+    if [[ $LAST_KERNEL != $CURRENT_KERNEL ]]; then
+      # Set reboot flag
+      touch /tmp/reboot
+    fi
