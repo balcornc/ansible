@@ -1,16 +1,12 @@
 ---
 
-- name: Updating all packages
-  yum:
-    name: '*'
-    state: latest
+- name: Performing yum update on host(s)
+  hosts: all
+  become: yes
+  any_errors_fatal: false
 
-- name: Comparing last kernel and running kernel
-  shell: |
-    LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1)
-    CURRENT_KERNEL=$(uname -r)
+  roles:
+  - pre_update
+  - yum_update
+  - post_update
 
-    if [[ $LAST_KERNEL != $CURRENT_KERNEL ]]; then
-      # Set reboot flag
-      touch /tmp/reboot
-    fi
